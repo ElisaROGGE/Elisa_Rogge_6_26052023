@@ -28,6 +28,10 @@ async function displayData(photographers) {
     photographers.forEach((photographer) => {
         const photographerModel = photographerFactory(photographer);
         const userCardDOM = photographerModel.getUserCardDOM();
+        userCardDOM.addEventListener('click', () => {
+          const detailsURL = `photographer.html?id=${photographer.id}`;
+          window.location.href = detailsURL;
+        });
         photographersSection.appendChild(userCardDOM);
     });
 };
