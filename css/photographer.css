@@ -17,6 +17,26 @@
     object-fit: cover;
     border-radius: 50%;
 }
+.media{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-row-gap: 4rem;
+    justify-items: center;
+}
+.media article{
+    height: 300px;
+    width: 300px;
+}
+.media article span{
+    color: #901C1C;
+    font-size: 24px;
+}
+.media img{
+    height: 250px;
+    width: 100%;
+    border-radius: 5px;
+    object-fit: cover;
+}
 
 .contact_button {
     font-size: 20px;
