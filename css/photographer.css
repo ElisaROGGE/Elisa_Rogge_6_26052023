@@ -31,12 +31,53 @@
     color: #901C1C;
     font-size: 24px;
 }
-.media img{
+.media img, video{
     height: 250px;
     width: 100%;
     border-radius: 5px;
     object-fit: cover;
 }
+
+.dropbtn {
+    background-color: #901C1C;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .dropbtn:hover, .dropbtn:focus {
+    background-color: #901C1C;
+  }
+  
+  .dropdown {
+    position: relative;
+    display: inline-block;
+    margin-left: 3.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #901C1C;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+  
+  .dropdown-content a {
+    color: white;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+  
+  .dropdown-content a:hover {background-color: #ddd;}
+  
+  .show {display:block;}
 
 .contact_button {
     font-size: 20px;

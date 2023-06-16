@@ -21,10 +21,14 @@ async function getPhotographer() {
     if (photographer) {
       displayHeader(photographer);
       displayData(filteredMedias);
+
+      //Lancer la fonction init du filtre avec filteredMedias initFilter(filteredMedias)
     } else {
       console.error('Aucun photographe trouvé avec cet identifiant');
     }
-  } catch (error) {
+  }
+   catch (error) {
+    window.location.href = 'http://127.0.0.1:5500/'
     console.error('Une erreur s\'est produite lors de la récupération des détails du photographe :', error);
     return null;
   }
@@ -61,8 +65,26 @@ function displayHeader(photographer) {
   headerSectionImg.appendChild(img);
 }
 
+function myFunction() {
+  document.getElementById("myDropdown").classList.toggle("show");
+}
+
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) {
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}
+
 async function init() {
   await getPhotographer();
 }
 
 init();
+
