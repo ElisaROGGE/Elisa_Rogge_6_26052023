@@ -22,7 +22,7 @@ async function getPhotographer() {
       displayHeader(photographer);
       displayData(filteredMedias);
 
-      //Lancer la fonction init du filtre avec filteredMedias initFilter(filteredMedias)
+      initFilter(filteredMedias);
     } else {
       console.error('Aucun photographe trouvé avec cet identifiant');
     }
@@ -81,6 +81,43 @@ window.onclick = function(event) {
     }
   }
 }
+
+function initFilter(medias) {
+  document.getElementById("date").addEventListener("click", function() {
+   const filterDate = medias.sort((a, b) => {
+      const dateA = new Date(a.date).getTime();
+      const dateB = new Date(b.date).getTime();
+      return dateB - dateA;
+    });
+
+    const mediaSection = document.querySelector(".media");
+    while (mediaSection.firstChild) {
+      mediaSection.removeChild(mediaSection.firstChild);
+    }
+    displayData(filterDate);
+  });
+
+  document.getElementById("titre").addEventListener("click", function() {
+    const filterTitle = medias.sort((a, b) => {
+      const titreA = a.title.toLowerCase();
+      const titreB = b.title.toLowerCase();
+      if (titreA < titreB) {
+        return -1;
+      }
+      if (titreA > titreB) {
+        return 1;
+      }
+      return 0;
+    });
+
+    const mediaSection = document.querySelector(".media");
+    while (mediaSection.firstChild) {
+      mediaSection.removeChild(mediaSection.firstChild);
+    }
+    displayData(filterTitle);
+  });
+}
+
 
 async function init() {
   await getPhotographer();

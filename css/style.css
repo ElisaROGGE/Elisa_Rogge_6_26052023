@@ -62,3 +62,6 @@ h1 {
 .photographer_section .price{
     font-size: 10px;
 }
+#errorFirstname{
+    color: red;
+}

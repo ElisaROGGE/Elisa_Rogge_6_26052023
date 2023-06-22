@@ -2,10 +2,13 @@
 <html>
   <head>
     <link href="css/style.css" rel="stylesheet" type="text/css" />
-    <meta charset="utf-8">
-    <link rel="icon" type="image/png" href="assets/favicon.png">
-    <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
-    <title>Fisheye - photographe </title>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/png" href="assets/favicon.png" />
+    <link
+      href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap"
+      rel="stylesheet"
+    />
+    <title>Fisheye - photographe</title>
   </head>
   <body>
     <header>
@@ -18,34 +21,39 @@
           <h3 id="location"></h3>
           <span id="tagline"></span>
         </div>
-        <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
+        <button class="contact_button" onclick="displayModal()">
+          Contactez-moi
+        </button>
         <div class="photographImg"></div>
       </div>
       <div class="dropdown">
         <span>Trier par</span>
-        <button onclick="myFunction()" class="dropbtn">Popularité</button>
+        <button onclick="myFunction()" class="dropbtn" id="populaire">
+          Popularité
+        </button>
         <div id="myDropdown" class="dropdown-content">
-          <a href="#">Date</a>
-          <a href="#">Titre</a>
+          <a href="#" id="date">Date</a>
+          <a href="#" id="titre">Titre</a>
         </div>
       </div>
       <div class="media"></div>
     </main>
     <div id="contact_modal">
-			<div class="modal">
-				<header>
+      <div class="modal">
+        <header>
           <h2>Contactez-moi</h2>
           <img src="assets/icons/close.svg" onclick="closeModal()" />
         </header>
-				<form>
-					<div>
-						<label>Prénom</label>
-						<input />
-					</div>
-          <button class="contact_button">Envoyer</button>
-				</form>
-			</div>
-		</div>
+        <form id="formModal">
+          <div>
+            <label>Prénom</label>
+            <input id="first" name="first"/>
+            <p id="errorFirstname" class="error errorActive"></p>
+          </div>
+          <button class="contact_button" type="submit">Envoyer</button>
+        </form>
+      </div>
+    </div>
     <script src="/scripts/pages/photographer.js"></script>
     <script src="scripts/factories/media.js"></script>
     <script src="/scripts/utils/contactForm.js"></script>
