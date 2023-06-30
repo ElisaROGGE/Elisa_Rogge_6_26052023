@@ -65,9 +65,19 @@ function displayHeader(photographer) {
   headerSectionImg.appendChild(img);
 }
 
-function myFunction() {
-  document.getElementById("myDropdown").classList.toggle("show");
+const btn = document.querySelector(".dropbtn");
+
+function toggleDropdown() {
+  const dropdown = document.getElementById("myDropdown");
+  dropdown.classList.toggle("show");
+
+  if (dropdown.classList.contains("show")) {
+    btn.style.display = "none";
+  } else {
+    btn.style.display = "block";
+  }
 }
+
 
 window.onclick = function(event) {
   if (!event.target.matches('.dropbtn')) {
@@ -76,6 +86,7 @@ window.onclick = function(event) {
     for (i = 0; i < dropdowns.length; i++) {
       var openDropdown = dropdowns[i];
       if (openDropdown.classList.contains('show')) {
+        btn.style.display = "none"
         openDropdown.classList.remove('show');
       }
     }
@@ -83,6 +94,17 @@ window.onclick = function(event) {
 }
 
 function initFilter(medias) {
+  const mediaSection = document.querySelector(".media");
+  document.getElementById("populaire").addEventListener("click", function() {
+    const filterLikes = medias.sort((a, b) => b.likes - a.likes); 
+
+    while (mediaSection.firstChild) {
+      mediaSection.removeChild(mediaSection.firstChild);
+    }
+    btn.style.display = "block"
+    btn.textContent = "Popularité"
+    displayData(filterLikes);
+  });
   document.getElementById("date").addEventListener("click", function() {
    const filterDate = medias.sort((a, b) => {
       const dateA = new Date(a.date).getTime();
@@ -90,10 +112,12 @@ function initFilter(medias) {
       return dateB - dateA;
     });
 
-    const mediaSection = document.querySelector(".media");
     while (mediaSection.firstChild) {
       mediaSection.removeChild(mediaSection.firstChild);
     }
+    btn.style.display = "block"
+    btn.textContent = "Date"
+    
     displayData(filterDate);
   });
 
@@ -110,10 +134,11 @@ function initFilter(medias) {
       return 0;
     });
 
-    const mediaSection = document.querySelector(".media");
     while (mediaSection.firstChild) {
       mediaSection.removeChild(mediaSection.firstChild);
     }
+    btn.style.display = "block"
+    btn.textContent = "Titre"
     displayData(filterTitle);
   });
 }

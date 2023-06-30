@@ -74,6 +74,7 @@
     padding: 12px 16px;
     text-decoration: none;
     display: block;
+    border-bottom: 2px solid white;
   }
   
   .dropdown-content a:hover {background-color: #ddd;}
@@ -114,8 +115,12 @@
     justify-content: space-between;
     padding: 35px;
     margin: auto;
-    top: 25%;
+    top: 5%;
     position: relative;
+}
+
+.formData{
+    margin: 0;
 }
 
 .modal header {
@@ -142,7 +147,7 @@ form {
 
 form label {
     color: #312E2E;
-    font-size: 36px;
+    font-size: 25px;
 }
 
 form div {
@@ -155,7 +160,15 @@ form div {
 
 form input {
     width: 100%;
-    height: 68px;
+    height: 45px;
     border: none;
     border-radius: 5px;
+}
+
+form textarea {
+    width: 100%;
+    height: 100px;
+    border: none;
+    border-radius: 5px;
+    margin-bottom: 40px;
 }

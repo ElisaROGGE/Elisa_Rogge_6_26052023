@@ -28,15 +28,17 @@
       </div>
       <div class="dropdown">
         <span>Trier par</span>
-        <button onclick="myFunction()" class="dropbtn" id="populaire">
+        <button onclick="toggleDropdown()" class="dropbtn">
           Popularité
         </button>
         <div id="myDropdown" class="dropdown-content">
+          <a href="#" id="populaire">Popularité</a>
           <a href="#" id="date">Date</a>
           <a href="#" id="titre">Titre</a>
         </div>
       </div>
       <div class="media"></div>
+      <div id="total-likes"></div>
     </main>
     <div id="contact_modal">
       <div class="modal">
@@ -45,10 +47,25 @@
           <img src="assets/icons/close.svg" onclick="closeModal()" />
         </header>
         <form id="formModal">
-          <div>
+          <div class="formData">
             <label>Prénom</label>
-            <input id="first" name="first"/>
+            <input id="first" name="first" />
             <p id="errorFirstname" class="error errorActive"></p>
+          </div>
+          <div class="formData">
+            <label>Nom</label><br />
+            <input class="text-control" type="text" id="last" name="last" />
+            <p id="errorLast" class="error errorActive"></p>
+          </div>
+          <div class="formData">
+            <label>E-mail</label><br />
+            <input class="text-control" type="email" id="email" name="email" />
+            <p id="errorEmail" class="error errorActive"></p>
+          </div>
+          <div class="formData">
+            <label>Votre message</label><br />
+            <textarea class="text-control" type="text" id="comment" name="comment"></textarea>
+            <!-- <p id="errorEmail" class="error errorActive"></p> -->
           </div>
           <button class="contact_button" type="submit">Envoyer</button>
         </form>
