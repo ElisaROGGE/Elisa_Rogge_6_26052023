@@ -1,4 +1,5 @@
 let totalLikes = 0;
+let likesArray = [];
 function mediaFactory(data) {
     const { id, photographerId, title, image, video, likes, date, price } = data;
     let picture = null;
@@ -7,49 +8,66 @@ function mediaFactory(data) {
         const article = document.createElement('article');
         let element = null;
         if (image) {
-            element = createImg(image)
+            element = createImg(image);
         }
-            
+    
         if (video) {
-            element = createVideo(video)
+            element = createVideo(video);
         }
     
         article.appendChild(element);
-        
+    
         const mediaTitle = document.createElement('span');
+        mediaTitle.classList.add("media-title");
         mediaTitle.textContent = title;
-        article.appendChild(mediaTitle);
     
         const mediaLike = document.createElement('div');
-        mediaLike.textContent = likes;
+        mediaLike.classList.add("media-like");
+        mediaLike.setAttribute('data-liked', 'false'); 
+    
+        const mainDiv = document.createElement('div');
+        mainDiv.classList.add('content');
+        article.appendChild(mainDiv);
+        mainDiv.appendChild(mediaTitle);
+        mainDiv.appendChild(mediaLike);
+    
+        const like = document.createElement('span');
+        const heart = document.createElement('i');
+        heart.classList.add('fa', 'fa-heart-o');
+        like.textContent = likes;
         totalLikes += likes;
+        console.log(totalLikes)
+        mediaLike.appendChild(like);
+        mediaLike.appendChild(heart);
     
-        mediaLike.addEventListener('click', incrementLikes);
+        heart.addEventListener('click', incrementLikes);
     
-        article.appendChild(mediaLike);
         return article;
+    
         function incrementLikes() {
-            if (mediaLike.getAttribute('data-liked') === 'true') {
-                return;
+            let currentLikes = parseInt(like.textContent);
+            let liked = mediaLike.getAttribute('data-liked') === 'true';
+    
+            if (liked) {
+                currentLikes -= 1;
+                heart.classList.remove("fa", "fa-heart");
+                heart.classList.add("fa", "fa-heart-o");
+                mediaLike.setAttribute('data-liked', 'false');
+            } else {
+                currentLikes += 1;
+                heart.classList.remove("fa", "fa-heart-o");
+                heart.classList.add("fa", "fa-heart");
+                mediaLike.setAttribute('data-liked', 'true');
             }
-        
-            let currentLikes = parseInt(mediaLike.textContent);
-        
-            currentLikes += 1;
-        
-            mediaLike.textContent = currentLikes;
-
-            totalLikes += 1;
-
+    
+            like.textContent = currentLikes;
+    
+            totalLikes += (liked ? -1 : 1);
             totalLikesElement.textContent = totalLikes;
-        
-            mediaLike.setAttribute('data-liked', 'true');
+            return totalLikesElement
         }
-        
     }
     
-    
-
     function createImg(image){
         picture = `assets/photographers/${image}`;
         const img = document.createElement('img');
@@ -66,8 +84,10 @@ function mediaFactory(data) {
     }
   
     let totalLikesElement = document.getElementById('total-likes');
+    let total = document.querySelector(".total")
+    let totalPrice = document.createElement("span")
+    total.appendChild(totalPrice)
     totalLikesElement.textContent = totalLikes;
-    console.log(totalLikes)
     return { picture, getMediaCardDOM };
   }
   

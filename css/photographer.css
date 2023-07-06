@@ -27,7 +27,7 @@
     height: 300px;
     width: 300px;
 }
-.media article span{
+.media article span.media-title{
     color: #901C1C;
     font-size: 24px;
 }
@@ -37,11 +37,35 @@
     border-radius: 5px;
     object-fit: cover;
 }
+.media .content{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.media .fa{
+    cursor: pointer;
+}
+.media .fa, span{
+    font-size: 20px;
+    color: #901C1C;
+}
+.media-like span{
+    margin-right: 5px;
+}
+.total{
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    width: 15rem;
+    height: 3rem;
+    background-color: #DB8876;
+    display: flex;
+}
 
 .dropbtn {
     background-color: #901C1C;
     color: white;
-    padding: 16px;
+    padding: 12px 16px;
     font-size: 16px;
     border: none;
     cursor: pointer;
@@ -65,8 +89,9 @@
     background-color: #901C1C;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
-    left: 38%;
+    left: 115%;
     width: 110px;
+    top: -30%;
   }
   
   .dropdown-content a {

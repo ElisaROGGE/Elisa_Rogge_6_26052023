@@ -9,6 +9,17 @@
       rel="stylesheet"
     />
     <title>Fisheye - photographe</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <script
+      src="https://kit.fontawesome.com/c12e8fe837.js"
+      crossorigin="anonymous"
+    ></script>
   </head>
   <body>
     <header>
@@ -28,17 +39,18 @@
       </div>
       <div class="dropdown">
         <span>Trier par</span>
-        <button onclick="toggleDropdown()" class="dropbtn">
-          Popularité
-        </button>
+        <button onclick="openDropdown()" class="dropbtn">Popularité</button>
         <div id="myDropdown" class="dropdown-content">
-          <a href="#" id="populaire">Popularité</a>
-          <a href="#" id="date">Date</a>
-          <a href="#" id="titre">Titre</a>
+          <a href="#" class="dropdown-item" id="populaire">Popularité</a>
+          <a href="#" class="dropdown-item" id="date">Date</a>
+          <a href="#" class="dropdown-item" id="titre">Titre</a>
         </div>
       </div>
       <div class="media"></div>
-      <div id="total-likes"></div>
+      <div class="total">
+        <div id="total-likes"></div>
+        <i class="fa fa-heart"></i>
+      </div>
     </main>
     <div id="contact_modal">
       <div class="modal">
@@ -64,8 +76,12 @@
           </div>
           <div class="formData">
             <label>Votre message</label><br />
-            <textarea class="text-control" type="text" id="comment" name="comment"></textarea>
-            <!-- <p id="errorEmail" class="error errorActive"></p> -->
+            <textarea
+              class="text-control"
+              type="text"
+              id="comment"
+              name="comment"
+            ></textarea>
           </div>
           <button class="contact_button" type="submit">Envoyer</button>
         </form>

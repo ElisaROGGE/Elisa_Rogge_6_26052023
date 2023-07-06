@@ -37,6 +37,7 @@ async function getPhotographer() {
 
 async function displayData(medias) {
   const mediaSection = document.querySelector(".media");
+  mediaSection.innerHTML = ""
 
   medias.forEach((media) => {
     const mediaModel = mediaFactory(media);
@@ -67,80 +68,77 @@ function displayHeader(photographer) {
 
 const btn = document.querySelector(".dropbtn");
 
-function toggleDropdown() {
+function openDropdown() {
   const dropdown = document.getElementById("myDropdown");
   dropdown.classList.toggle("show");
-
-  if (dropdown.classList.contains("show")) {
-    btn.style.display = "none";
-  } else {
-    btn.style.display = "block";
-  }
-}
-
-
-window.onclick = function(event) {
-  if (!event.target.matches('.dropbtn')) {
-    var dropdowns = document.getElementsByClassName("dropdown-content");
-    var i;
-    for (i = 0; i < dropdowns.length; i++) {
-      var openDropdown = dropdowns[i];
-      if (openDropdown.classList.contains('show')) {
-        btn.style.display = "none"
-        openDropdown.classList.remove('show');
-      }
-    }
-  }
+  btn.style.display = "none";
 }
 
 function initFilter(medias) {
-  const mediaSection = document.querySelector(".media");
-  document.getElementById("populaire").addEventListener("click", function() {
-    const filterLikes = medias.sort((a, b) => b.likes - a.likes); 
 
-    while (mediaSection.firstChild) {
-      mediaSection.removeChild(mediaSection.firstChild);
-    }
-    btn.style.display = "block"
-    btn.textContent = "Popularité"
-    displayData(filterLikes);
-  });
-  document.getElementById("date").addEventListener("click", function() {
-   const filterDate = medias.sort((a, b) => {
+  const dropdownItems = document.querySelectorAll('.dropdown-item')
+  console.log(dropdownItems)
+
+  for (const dropdownItem of dropdownItems) {
+    dropdownItem.addEventListener("click", function(e) {
+      console.log(dropdownItem.id)
+
+      let filterLikes = medias; 
+      switch (dropdownItem.id) {
+        case "populaire":
+          filterLikes = filterPopulaire(medias)
+          break;
+
+          case "date":
+          filterLikes = filterDate(medias)
+          break;
+
+          case "titre":
+          filterLikes = filterTitle(medias)
+          break;
+      
+        default:
+          break;
+      }
+  
+      btn.style.display = "inline-block"
+      btn.textContent = dropdownItem.textContent
+      const dropdown = document.getElementById("myDropdown");
+      dropdown.classList.remove('show')
+  
+      displayData(filterLikes);
+    });
+  }
+
+  function filterPopulaire(medias) {
+    const filterLikes = medias.sort((a, b) => b.likes - a.likes); 
+    return filterLikes;
+  }
+
+  function filterDate(medias) {
+    const filterDate = medias.sort((a, b) => {
       const dateA = new Date(a.date).getTime();
       const dateB = new Date(b.date).getTime();
       return dateB - dateA;
     });
+    return filterDate;
+  }
 
-    while (mediaSection.firstChild) {
-      mediaSection.removeChild(mediaSection.firstChild);
-    }
-    btn.style.display = "block"
-    btn.textContent = "Date"
-    
-    displayData(filterDate);
-  });
-
-  document.getElementById("titre").addEventListener("click", function() {
+  function filterTitle(medias) {
     const filterTitle = medias.sort((a, b) => {
-      const titreA = a.title.toLowerCase();
-      const titreB = b.title.toLowerCase();
-      if (titreA < titreB) {
-        return -1;
-      }
-      if (titreA > titreB) {
-        return 1;
-      }
-      return 0;
-    });
+          const titreA = a.title.toLowerCase();
+          const titreB = b.title.toLowerCase();
+          if (titreA < titreB) {
+            return -1;
+          }
+          if (titreA > titreB) {
+            return 1;
+          }
+          return 0;
+        });
+    return filterTitle;
+  }
 
-    while (mediaSection.firstChild) {
-      mediaSection.removeChild(mediaSection.firstChild);
-    }
-    btn.style.display = "block"
-    btn.textContent = "Titre"
-    displayData(filterTitle);
-  });
 }
 
 
