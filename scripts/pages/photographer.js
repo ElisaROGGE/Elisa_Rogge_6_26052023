@@ -21,8 +21,9 @@ async function getPhotographer() {
     if (photographer) {
       displayHeader(photographer);
       displayData(filteredMedias);
-
       initFilter(filteredMedias);
+      incrementLikes(filteredMedias)
+      totalLike(photographer)
     } else {
       console.error('Aucun photographe trouvé avec cet identifiant');
     }
@@ -148,3 +149,76 @@ async function init() {
 
 init();
 
+
+function totalLike() {
+  const likes = document.querySelectorAll('.media-like span');
+  let totalLikes = 0;
+  for (const like of likes) {
+    totalLikes += Number(like.textContent);
+  }
+  let totalLikesElement = document.getElementById('total-likes');
+  totalLikesElement.textContent = totalLikes;
+  return totalLikes;
+}
+
+function incrementLikes(medias) {
+  const hearts = document.querySelectorAll('.media-like i');
+
+  for (const heart of hearts) {
+    heart.addEventListener('click', (e) => {
+      let currentLikes = parseInt(medias.likes);
+      let mediaLike = hearts[i].parentNode;
+      let liked = mediaLike.getAttribute('data-liked') === 'true';
+
+      if (liked) {
+        currentLikes -= 1;
+        heart.classList.remove('fa-heart');
+        heart.classList.add('fa-heart-o');
+        mediaLike.setAttribute('data-liked', 'false');
+      } else {
+        currentLikes += 1;
+        heart.classList.remove('fa-heart-o');
+        heart.classList.add('fa-heart');
+        mediaLike.setAttribute('data-liked', 'true');
+      }
+
+      medias.likes = currentLikes;
+      let likeSpan = mediaLike.querySelector('span');
+      likeSpan.textContent = currentLikes;
+
+      totalLike();
+    });
+  }
+}
+
+
+// heart.addEventListener('click', incrementLikes);
+
+// let totalLikesElement = document.getElementById('total-likes');
+//     let total = document.querySelector(".total")
+//     let totalPrice = document.createElement("span")
+//     total.appendChild(totalPrice)
+//     totalLikesElement.textContent = totalLikes;
+
+//     function incrementLikes() {
+//       let currentLikes = parseInt(like.textContent);
+//       let liked = mediaLike.getAttribute('data-liked') === 'true';
+
+//       if (liked) {
+//           currentLikes -= 1;
+//           heart.classList.remove("fa", "fa-heart");
+//           heart.classList.add("fa", "fa-heart-o");
+//           mediaLike.setAttribute('data-liked', 'false');
+//       } else {
+//           currentLikes += 1;
+//           heart.classList.remove("fa", "fa-heart-o");
+//           heart.classList.add("fa", "fa-heart");
+//           mediaLike.setAttribute('data-liked', 'true');
+//       }
+
+//       like.textContent = currentLikes;
+
+//       totalLikes += (liked ? -1 : 1);
+//       totalLikesElement.textContent = totalLikes;
+//       return totalLikesElement
+//   }

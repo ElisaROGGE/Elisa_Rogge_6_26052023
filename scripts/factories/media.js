@@ -21,15 +21,12 @@ function mediaFactory(data) {
         const modalImg = document.createElement('img');
         modalImg.setAttribute('src', picture);
       
-        // Ajouter les éléments à la modal
         modalContent.appendChild(closeModalBtn);
         modalContent.appendChild(modalImg);
         modalOverlay.appendChild(modalContent);
       
-        // Ajouter la modal à la page
         document.body.appendChild(modalOverlay);
       
-        // Gérer l'événement de clic sur le bouton de fermeture
         closeModalBtn.addEventListener('click', closeModal);
       }
       
@@ -68,40 +65,15 @@ function mediaFactory(data) {
         mainDiv.appendChild(mediaLike);
     
         const like = document.createElement('span');
+        like.classList.add('heart-span')
         const heart = document.createElement('i');
         heart.classList.add('fa', 'fa-heart-o');
         like.textContent = likes;
-        totalLikes += likes;
-        console.log(totalLikes)
         mediaLike.appendChild(like);
         mediaLike.appendChild(heart);
     
-        heart.addEventListener('click', incrementLikes);
-    
         return article;
-    
-        function incrementLikes() {
-            let currentLikes = parseInt(like.textContent);
-            let liked = mediaLike.getAttribute('data-liked') === 'true';
-    
-            if (liked) {
-                currentLikes -= 1;
-                heart.classList.remove("fa", "fa-heart");
-                heart.classList.add("fa", "fa-heart-o");
-                mediaLike.setAttribute('data-liked', 'false');
-            } else {
-                currentLikes += 1;
-                heart.classList.remove("fa", "fa-heart-o");
-                heart.classList.add("fa", "fa-heart");
-                mediaLike.setAttribute('data-liked', 'true');
-            }
-    
-            like.textContent = currentLikes;
-    
-            totalLikes += (liked ? -1 : 1);
-            totalLikesElement.textContent = totalLikes;
-            return totalLikesElement
-        }
+
     }
     
     function createImg(image){
@@ -119,12 +91,7 @@ function mediaFactory(data) {
         videoElement.setAttribute('controls', true);
         return videoElement;
     }
-  
-    let totalLikesElement = document.getElementById('total-likes');
-    let total = document.querySelector(".total")
-    let totalPrice = document.createElement("span")
-    total.appendChild(totalPrice)
-    totalLikesElement.textContent = totalLikes;
+
     return { picture, getMediaCardDOM };
   }
   
