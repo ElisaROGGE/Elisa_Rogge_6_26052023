@@ -60,6 +60,16 @@
     height: 3rem;
     background-color: #DB8876;
     display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-weight: 700;
+}
+.like-heart{
+    display: flex;
+    align-items: center;
+}
+.like-heart i {
+    margin-left: 5px;
 }
 
 .dropbtn {

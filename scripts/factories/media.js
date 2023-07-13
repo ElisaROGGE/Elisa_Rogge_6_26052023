@@ -16,7 +16,6 @@ function mediaFactory(data) {
       
         const closeModalBtn = document.createElement('i');
         closeModalBtn.classList.add('fa-solid', 'fa-xmark');
-        closeModalBtn.innerHTML = '&times;';
       
         const modalImg = document.createElement('img');
         modalImg.setAttribute('src', picture);
@@ -88,7 +87,6 @@ function mediaFactory(data) {
         const photographerVideo = `assets/photographers/${video}`;
         const videoElement = document.createElement('video');
         videoElement.setAttribute('src', photographerVideo);
-        videoElement.setAttribute('controls', true);
         return videoElement;
     }
 

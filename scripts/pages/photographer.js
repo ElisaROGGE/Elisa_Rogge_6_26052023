@@ -22,7 +22,7 @@ async function getPhotographer() {
       displayHeader(photographer);
       displayData(filteredMedias);
       initFilter(filteredMedias);
-      incrementLikes(filteredMedias)
+      incrementLikes()
       totalLike(photographer)
     } else {
       console.error('Aucun photographe trouvé avec cet identifiant');
@@ -30,7 +30,7 @@ async function getPhotographer() {
   }
    catch (error) {
     window.location.href = 'http://127.0.0.1:5500/'
-    console.error('Une erreur s\'est produite lors de la récupération des détails du photographe :', error);
+    console.error("Une erreur s'est produite lors de la récupération des détails du photographe :", error);
     return null;
   }
 }
@@ -57,6 +57,9 @@ function displayHeader(photographer) {
 
   const taglineElement = document.getElementById('tagline');
   taglineElement.textContent = photographer.tagline;
+
+  const price = document.getElementById('price');
+  price.textContent = photographer.price + "€/jour";
 
   const headerSectionImg = document.querySelector('.photograph-header .photographImg');
   const picture = `assets/photographers/Photographers/${photographer.portrait}`;
@@ -161,13 +164,15 @@ function totalLike() {
   return totalLikes;
 }
 
-function incrementLikes(medias) {
+function incrementLikes() {
   const hearts = document.querySelectorAll('.media-like i');
 
   for (const heart of hearts) {
     heart.addEventListener('click', (e) => {
-      let currentLikes = parseInt(medias.likes);
-      let mediaLike = hearts[i].parentNode;
+     
+      let mediaLike = heart.parentNode;
+      let likeSpan = mediaLike.querySelector('span');
+      let currentLikes = parseInt(likeSpan.textContent);
       let liked = mediaLike.getAttribute('data-liked') === 'true';
 
       if (liked) {
@@ -182,8 +187,6 @@ function incrementLikes(medias) {
         mediaLike.setAttribute('data-liked', 'true');
       }
 
-      medias.likes = currentLikes;
-      let likeSpan = mediaLike.querySelector('span');
       likeSpan.textContent = currentLikes;
 
       totalLike();
