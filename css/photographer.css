@@ -123,18 +123,15 @@
     left: 0;
     right: 0;
     bottom: 0;
-    padding: 5%;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     box-sizing: border-box;
-    background-color: rgba(255, 255, 255, 0.692);
+    background-color: #fefefe;
   }
   .modal-content {
     background-color: #fefefe;
     margin: 15% auto; 
-    padding: 20px;
-    border: 1px solid #888;
     width: 80%; 
     height: 80%;
     display: flex;

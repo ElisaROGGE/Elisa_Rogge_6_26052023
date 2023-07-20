@@ -1,12 +1,18 @@
 let totalLikes = 0;
 let likesArray = [];
+let photos = [];
 function mediaFactory(data) {
     const { id, photographerId, title, image, video, likes, date, price } = data;
     let picture = null;
+    let currentPhotoIndex = 0;
+    console.log(image)
+    if (image) {
+        photos.push(`assets/photographers/${image}`);
+    }
 
     function openModal(event) {
         const picture = `assets/photographers/${event}`;
-      
+
         const modalOverlay = document.createElement('div');
         modalOverlay.classList.add('modal-overlay');
         modalOverlay.style.display = 'flex'
@@ -18,8 +24,19 @@ function mediaFactory(data) {
         closeModalBtn.classList.add('fa-solid', 'fa-xmark');
       
         const modalImg = document.createElement('img');
+        modalImg.classList.add("modal-image")
         modalImg.setAttribute('src', picture);
-      
+
+        const prevBtn = document.createElement('button');
+        prevBtn.textContent = '<';
+        prevBtn.addEventListener('click', () => changePicture(-1));
+
+        const nextBtn = document.createElement('button');
+        nextBtn.textContent = '>';
+        nextBtn.addEventListener('click', () => changePicture(1));
+
+        modalContent.appendChild(prevBtn);
+        modalContent.appendChild(nextBtn);
         modalContent.appendChild(closeModalBtn);
         modalContent.appendChild(modalImg);
         modalOverlay.appendChild(modalContent);
@@ -28,6 +45,19 @@ function mediaFactory(data) {
       
         closeModalBtn.addEventListener('click', closeModal);
       }
+      function changePicture(offset) { 
+        currentPhotoIndex += offset;
+        
+        if (currentPhotoIndex < 0) {
+            currentPhotoIndex = photos.length - 1;
+        } else if (currentPhotoIndex >= photos.length) {
+            currentPhotoIndex = 0;
+        }
+
+        const modalImg = document.querySelector('.modal-image');
+        modalImg.setAttribute('src', photos[currentPhotoIndex]);
+        console.log('currentPhoto', modalImg)
+    }
       
       function closeModal() {
         const modalOverlay = document.querySelector('.modal-overlay');
@@ -80,6 +110,7 @@ function mediaFactory(data) {
         const img = document.createElement('img');
         img.classList.add("media-card")
         img.setAttribute('src', picture);
+        img.setAttribute('id', 'modal-image');
         return img
     }
 

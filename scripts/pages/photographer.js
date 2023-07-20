@@ -193,35 +193,3 @@ function incrementLikes() {
     });
   }
 }
-
-
-// heart.addEventListener('click', incrementLikes);
-
-// let totalLikesElement = document.getElementById('total-likes');
-//     let total = document.querySelector(".total")
-//     let totalPrice = document.createElement("span")
-//     total.appendChild(totalPrice)
-//     totalLikesElement.textContent = totalLikes;
-
-//     function incrementLikes() {
-//       let currentLikes = parseInt(like.textContent);
-//       let liked = mediaLike.getAttribute('data-liked') === 'true';
-
-//       if (liked) {
-//           currentLikes -= 1;
-//           heart.classList.remove("fa", "fa-heart");
-//           heart.classList.add("fa", "fa-heart-o");
-//           mediaLike.setAttribute('data-liked', 'false');
-//       } else {
-//           currentLikes += 1;
-//           heart.classList.remove("fa", "fa-heart-o");
-//           heart.classList.add("fa", "fa-heart");
-//           mediaLike.setAttribute('data-liked', 'true');
-//       }
-
-//       like.textContent = currentLikes;
-
-//       totalLikes += (liked ? -1 : 1);
-//       totalLikesElement.textContent = totalLikes;
-//       return totalLikesElement
-//   }
