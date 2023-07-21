@@ -128,27 +128,39 @@
     align-items: center;
     box-sizing: border-box;
     background-color: #fefefe;
+    flex-direction: column-reverse;
+  }
+  .lightbox{
+    width: 71%;
   }
   .modal-content {
-    background-color: #fefefe;
-    margin: 15% auto; 
-    width: 80%; 
-    height: 80%;
     display: flex;
-    flex-direction: row-reverse;
+    justify-content: center;
   }
-  .modal-content img{
-    width: 100%;
-    height: 100%;
+  .modal-content .modal-image{
+    height: 80vh;
+    margin: 0 10px;
   }
   .modal-content button{
     float: right;
   }
-  .modal-content i.fa-xmark{
+  .modal-content i{
     float: right;
     color: #901C1C;
     font-size: 3rem;
     cursor: pointer;
+  }
+  .modal-content i.fa-chevron-left{
+    position: relative;
+    top: 50%;
+  }
+  i.fa-chevron-right{
+    position: relative;
+    top: 45%;
+  }
+  .modal-content div{
+    display: flex;
+    flex-direction: column;
   }
 
 .contact_button {

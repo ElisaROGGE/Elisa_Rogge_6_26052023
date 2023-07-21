@@ -46,6 +46,8 @@ async function displayData(medias) {
 
     mediaSection.appendChild(mediaCardDOM);
   });
+
+  lightbox() 
 }
 
 function displayHeader(photographer) {
