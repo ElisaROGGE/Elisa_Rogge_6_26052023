@@ -23,31 +23,31 @@
   </head>
   <body>
     <header>
-      <img src="assets/images/logo.png" class="logo" />
+      <img src="assets/images/logo.png" class="logo" alt="fisheye logo"/>
     </header>
     <main id="main">
-      <div class="photograph-header">
+      <div class="photograph-header" aria-label="photograph-info">
         <div class="photographInfo">
           <h1 id="name"></h1>
           <h3 id="location"></h3>
           <span id="tagline"></span>
         </div>
-        <button class="contact_button" onclick="displayModal()">
+        <button role="button" class="contact_button" onclick="displayModal()">
           Contactez-moi
         </button>
         <div class="photographImg"></div>
       </div>
       <div class="dropdown">
         <span>Trier par</span>
-        <button onclick="openDropdown()" class="dropbtn">Popularité</button>
+        <button role="button" onclick="openDropdown()" class="dropbtn">Popularité</button>
         <div id="myDropdown" class="dropdown-content">
           <a href="#" class="dropdown-item" id="populaire">Popularité</a>
           <a href="#" class="dropdown-item" id="date">Date</a>
           <a href="#" class="dropdown-item" id="titre">Titre</a>
         </div>
       </div>
-      <div class="media"></div>
-      <div class="total">
+      <div aria-label="photographer's medias" class="media"></div>
+      <div class="total" aria-label="Total likes and photographer price">
         <div class="like-heart">
           <div id="total-likes"></div>
           <i class="fa fa-heart"></i>
@@ -55,30 +55,30 @@
         <div id="price"></div>
       </div>
     </main>
-    <div id="contact_modal">
+    <div id="contact_modal" aria-labelledby="modal_title">
       <div class="modal">
         <header>
-          <h2>Contactez-moi</h2>
-          <img src="assets/icons/close.svg" onclick="closeModal()" />
+          <h2 id="modal_title">Contactez-moi</h2>
+          <img src="assets/icons/close.svg" onclick="closeModal()" alt="close button"/>
         </header>
         <form id="formModal">
           <div class="formData">
-            <label>Prénom</label>
-            <input id="first" name="first" />
-            <p id="errorFirstname" class="error errorActive"></p>
+            <label for="firstName">Prénom</label>
+            <input type="text" id="first" name="first" />
+            <p role="alert" id="errorFirstname" class="error errorActive"></p>
           </div>
           <div class="formData">
-            <label>Nom</label><br />
-            <input class="text-control" type="text" id="last" name="last" />
-            <p id="errorLast" class="error errorActive"></p>
+            <label for="name">Nom</label><br />
+            <input type="text" class="text-control" type="text" id="last" name="last" />
+            <p role="alert" id="errorLast" class="error errorActive"></p>
           </div>
           <div class="formData">
-            <label>E-mail</label><br />
-            <input class="text-control" type="email" id="email" name="email" />
-            <p id="errorEmail" class="error errorActive"></p>
+            <label for="email">E-mail</label><br />
+            <input type="text" class="text-control" type="email" id="email" name="email" />
+            <p role="alert" id="errorEmail" class="error errorActive"></p>
           </div>
           <div class="formData">
-            <label>Votre message</label><br />
+            <label for="message">Votre message</label><br />
             <textarea
               class="text-control"
               type="text"
