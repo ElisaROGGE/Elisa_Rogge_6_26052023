@@ -1,46 +1,12 @@
-let totalLikes = 0;
-let likesArray = [];
 function mediaFactory(data) {
     const { id, photographerId, title, image, video, likes, date, price } = data;
     let picture = null;
-
-    function openModal(event) {
-        const picture = `assets/photographers/${event}`;
-      
-        const modalOverlay = document.createElement('div');
-        modalOverlay.classList.add('modal-overlay');
-        modalOverlay.style.display = 'flex'
-      
-        const modalContent = document.createElement('div');
-        modalContent.classList.add('modal-content');
-      
-        const closeModalBtn = document.createElement('i');
-        closeModalBtn.classList.add('fa-solid', 'fa-xmark');
-      
-        const modalImg = document.createElement('img');
-        modalImg.setAttribute('src', picture);
-      
-        modalContent.appendChild(closeModalBtn);
-        modalContent.appendChild(modalImg);
-        modalOverlay.appendChild(modalContent);
-      
-        document.body.appendChild(modalOverlay);
-      
-        closeModalBtn.addEventListener('click', closeModal);
-      }
-      
-      function closeModal() {
-        const modalOverlay = document.querySelector('.modal-overlay');
-        modalOverlay.remove();
-      }
-
   
     function getMediaCardDOM() {
         const article = document.createElement('article');
         let element = null;
         if (image) {
             element = createImg(image);
-            element.addEventListener('click', () => openModal(image));
         }
     
         if (video) {
@@ -80,6 +46,7 @@ function mediaFactory(data) {
         const img = document.createElement('img');
         img.classList.add("media-card")
         img.setAttribute('src', picture);
+        img.setAttribute('id', 'modal-image');
         return img
     }
 
@@ -87,6 +54,7 @@ function mediaFactory(data) {
         const photographerVideo = `assets/photographers/${video}`;
         const videoElement = document.createElement('video');
         videoElement.setAttribute('src', photographerVideo);
+        videoElement.classList.add("media-card")
         return videoElement;
     }
 
