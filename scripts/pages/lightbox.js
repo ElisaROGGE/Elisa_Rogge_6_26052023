@@ -39,7 +39,7 @@ function lightbox() {
     const modalContent = document.createElement("div");
     modalContent.classList.add("modal-content");
     const prevBtn = document.createElement("i");
-    prevBtn.classList.add("fa-solid", "fa-chevron-left");
+    prevBtn.classList.add("fa-solid", "fa-chevron-left", 'arrow-icon');
     prevBtn.addEventListener("click", () => changePicture(-1));
 
     const closeModalBtn = document.createElement("i");
@@ -47,11 +47,11 @@ function lightbox() {
     
     const modalImg = createImageOrVideo(content)
     const modalTitle = document.createElement('span')
+    modalTitle.classList.add('modal-title')
     modalTitle.textContent = title
-    console.log(modalTitle.textContent)
     
     const nextBtn = document.createElement("i");
-    nextBtn.classList.add("fa-solid", "fa-chevron-right");
+    nextBtn.classList.add("fa-solid", "fa-chevron-right", "arrow-icon");
     nextBtn.addEventListener("click", () => changePicture(1));
 
     const navIcon = document.createElement('div')
@@ -75,27 +75,24 @@ function lightbox() {
 
   function changePicture(offset) {
     currentPhotoIndex += offset;
-
+  
     if (currentPhotoIndex < 0) {
       currentPhotoIndex = photos.length - 1;
     } else if (currentPhotoIndex >= photos.length) {
       currentPhotoIndex = 0;
     }
-
-    const modalContent = document.querySelector(".modal-content");
-    const lightbox = document.querySelector(".lightbox");
+  
     const modalImg = document.querySelector(".modal-image");
-    const navIcon = document.querySelector('.nav-icon')
-    modalImg.remove();
-    navIcon.remove();
-    lightbox.remove();
-
-    const modalNew = createImageOrVideo(photos[currentPhotoIndex])
-    modalContent.appendChild(modalNew);
-    modalContent.appendChild(navIcon);
-
+    const modalTitle = document.querySelector('.modal-title');
+  
+    if (modalImg) {
+      modalImg.src = photos[currentPhotoIndex].src;
+    }
+    if (modalTitle) {
+      modalTitle.textContent = titles[currentPhotoIndex].textContent;
+    }
   }
-
+  
   function closeModal() {
     const modalOverlay = document.querySelector(".modal-overlay");
     modalOverlay.remove();
