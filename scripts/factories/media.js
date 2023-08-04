@@ -33,6 +33,7 @@ function mediaFactory(data) {
         like.classList.add('heart-span')
         const heart = document.createElement('i');
         heart.classList.add('fa', 'fa-heart-o');
+        heart.setAttribute('tabindex', '2')
         like.textContent = likes;
         mediaLike.appendChild(like);
         mediaLike.appendChild(heart);
@@ -45,6 +46,8 @@ function mediaFactory(data) {
         picture = `assets/photographers/${image}`;
         const img = document.createElement('img');
         img.classList.add("media-card")
+        img.setAttribute('aria-label', 'media')
+        img.setAttribute('tabindex', '1')
         img.setAttribute('src', picture);
         img.setAttribute('id', 'modal-image');
         return img
@@ -53,6 +56,8 @@ function mediaFactory(data) {
     function createVideo(video){
         const photographerVideo = `assets/photographers/${video}`;
         const videoElement = document.createElement('video');
+        videoElement.setAttribute('aria-label', 'media')
+        videoElement.setAttribute('tabindex', '1')
         videoElement.setAttribute('src', photographerVideo);
         videoElement.classList.add("media-card")
         return videoElement;

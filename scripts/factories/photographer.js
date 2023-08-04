@@ -5,6 +5,8 @@ function photographerFactory(data) {
   
     function getUserCardDOM() {
       const article = document.createElement('article');
+      article.setAttribute('tabindex', '1')
+      article.setAttribute('aria-label', 'photographer')
       const img = document.createElement('img');
       img.setAttribute('src', picture);
       img.setAttribute('alt', `${name} - Portrait`);

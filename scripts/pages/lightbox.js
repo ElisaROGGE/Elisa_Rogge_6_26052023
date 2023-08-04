@@ -6,11 +6,11 @@ function lightbox() {
     const photo = photos[i];
     const title = titles[i].textContent;
 
-    photo.addEventListener('click', () => openModal(photo, title));
+    photo.addEventListener('click', () => openModal(photo, title, i));
   }
 
 
-  let currentPhotoIndex = 0;
+  let currentPhotoIndex;
   function createImageOrVideo(photo){
     let element;
     if(photo.nodeName === "IMG"){
@@ -28,7 +28,8 @@ function lightbox() {
   }
   
 
-  function openModal(content, title) {
+  function openModal(content, title, index) {
+    currentPhotoIndex = index
 
     const modalOverlay = document.createElement("div");
     modalOverlay.classList.add("modal-overlay");
@@ -46,6 +47,7 @@ function lightbox() {
     closeModalBtn.classList.add("fa-solid", "fa-xmark");
     
     const modalImg = createImageOrVideo(content)
+
     const modalTitle = document.createElement('span')
     modalTitle.classList.add('modal-title')
     modalTitle.textContent = title
@@ -75,6 +77,8 @@ function lightbox() {
 
   function changePicture(offset) {
     currentPhotoIndex += offset;
+
+    console.log(currentPhotoIndex, offset)
   
     if (currentPhotoIndex < 0) {
       currentPhotoIndex = photos.length - 1;
@@ -82,12 +86,13 @@ function lightbox() {
       currentPhotoIndex = 0;
     }
   
-    const modalImg = document.querySelector(".modal-image");
+    const modalImgOld = document.querySelector(".modal-image");
+    const modalImgNew = createImageOrVideo(photos[currentPhotoIndex])
+    const parentModalImgElt = document.querySelector(".modal-content")
+    parentModalImgElt.replaceChild(modalImgNew, modalImgOld)
+
     const modalTitle = document.querySelector('.modal-title');
   
-    if (modalImg) {
-      modalImg.src = photos[currentPhotoIndex].src;
-    }
     if (modalTitle) {
       modalTitle.textContent = titles[currentPhotoIndex].textContent;
     }
