@@ -2,34 +2,52 @@ function lightbox() {
   let photos = document.querySelectorAll(".media-card");
   let titles = document.querySelectorAll(".media-title");
 
+  document.addEventListener("keydown", function (event) {
+    if (event.key === "Escape") {
+      closeModal(); 
+    }
+  });
+
   for (let i = 0; i < photos.length; i++) {
     const photo = photos[i];
     const title = titles[i].textContent;
 
-    photo.addEventListener('click', () => openModal(photo, title, i));
+    photo.addEventListener("click", () => openModal(photo, title, i));
+    photo.addEventListener("keydown", (event) => {
+      if (event.keyCode === 13) {
+        openModal(photo, title, i);
+      }
+    });
   }
-
 
   let currentPhotoIndex;
-  function createImageOrVideo(photo){
+  function createImageOrVideo(photo) {
     let element;
-    if(photo.nodeName === "IMG"){
-        element = document.createElement("img");
-        element.classList.add("modal-image");
-        element.setAttribute("src", photo.src);
-    }else{
-        element = document.createElement("video");
-        element.classList.add("modal-image");
-        element.setAttribute("src", photo.src);
-        element.setAttribute("controls", '');
+    if (photo.nodeName === "IMG") {
+      element = document.createElement("img");
+      element.classList.add("modal-image");
+      element.setAttribute("src", photo.src);
+    } else {
+      element = document.createElement("video");
+      element.classList.add("modal-image");
+      element.setAttribute("src", photo.src);
+      element.setAttribute("controls", "");
     }
-    
-    return element
+
+    return element;
   }
-  
 
   function openModal(content, title, index) {
-    currentPhotoIndex = index
+    currentPhotoIndex = index;
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "Escape") {
+        closeModal();
+      } else if (event.key === "ArrowLeft") {
+        changePicture(-1);
+      } else if (event.key === "ArrowRight") {
+        changePicture(1);
+      }
+    });
 
     const modalOverlay = document.createElement("div");
     modalOverlay.classList.add("modal-overlay");
@@ -40,35 +58,34 @@ function lightbox() {
     const modalContent = document.createElement("div");
     modalContent.classList.add("modal-content");
     const prevBtn = document.createElement("i");
-    prevBtn.classList.add("fa-solid", "fa-chevron-left", 'arrow-icon');
+    prevBtn.classList.add("fa-solid", "fa-chevron-left", "arrow-icon");
     prevBtn.addEventListener("click", () => changePicture(-1));
 
     const closeModalBtn = document.createElement("i");
     closeModalBtn.classList.add("fa-solid", "fa-xmark");
-    
-    const modalImg = createImageOrVideo(content)
 
-    const modalTitle = document.createElement('span')
-    modalTitle.classList.add('modal-title')
-    modalTitle.textContent = title
-    
+    const modalImg = createImageOrVideo(content);
+
+    const modalTitle = document.createElement("span");
+    modalTitle.classList.add("modal-title");
+    modalTitle.textContent = title;
+
     const nextBtn = document.createElement("i");
     nextBtn.classList.add("fa-solid", "fa-chevron-right", "arrow-icon");
     nextBtn.addEventListener("click", () => changePicture(1));
 
-    const navIcon = document.createElement('div')
-    navIcon.classList.add('nav-icon')
-    
+    const navIcon = document.createElement("div");
+    navIcon.classList.add("nav-icon");
+
     navIcon.appendChild(closeModalBtn);
     navIcon.appendChild(nextBtn);
     modalContent.appendChild(prevBtn);
     modalContent.appendChild(modalImg);
     modalContent.appendChild(navIcon);
     lightbox.appendChild(modalTitle);
-    
+
     modalOverlay.appendChild(lightbox);
     modalOverlay.appendChild(modalContent);
-    
 
     document.body.appendChild(modalOverlay);
 
@@ -78,26 +95,24 @@ function lightbox() {
   function changePicture(offset) {
     currentPhotoIndex += offset;
 
-    console.log(currentPhotoIndex, offset)
-  
     if (currentPhotoIndex < 0) {
       currentPhotoIndex = photos.length - 1;
     } else if (currentPhotoIndex >= photos.length) {
       currentPhotoIndex = 0;
     }
-  
-    const modalImgOld = document.querySelector(".modal-image");
-    const modalImgNew = createImageOrVideo(photos[currentPhotoIndex])
-    const parentModalImgElt = document.querySelector(".modal-content")
-    parentModalImgElt.replaceChild(modalImgNew, modalImgOld)
 
-    const modalTitle = document.querySelector('.modal-title');
-  
+    const modalImgOld = document.querySelector(".modal-image");
+    const modalImgNew = createImageOrVideo(photos[currentPhotoIndex]);
+    const parentModalImgElt = document.querySelector(".modal-content");
+    parentModalImgElt.replaceChild(modalImgNew, modalImgOld);
+
+    const modalTitle = document.querySelector(".modal-title");
+
     if (modalTitle) {
       modalTitle.textContent = titles[currentPhotoIndex].textContent;
     }
   }
-  
+
   function closeModal() {
     const modalOverlay = document.querySelector(".modal-overlay");
     modalOverlay.remove();

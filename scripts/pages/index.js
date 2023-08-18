@@ -23,6 +23,12 @@ async function displayData(photographers) {
           const detailsURL = `photographer.html?id=${photographer.id}`;
           window.location.href = detailsURL;
         });
+        userCardDOM.addEventListener('keydown', (event) => {
+          if(event.key === "Enter"){
+            const detailsURL = `photographer.html?id=${photographer.id}`;
+            window.location.href = detailsURL;
+          }
+        });
         photographersSection.appendChild(userCardDOM);
     });
 };

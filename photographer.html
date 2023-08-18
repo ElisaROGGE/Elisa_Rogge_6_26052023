@@ -45,7 +45,7 @@
       </div>
       <div class="dropdown">
         <span>Trier par</span>
-        <button role="button" onclick="openDropdown()" class="dropbtn">
+        <button role="button" onclick="openDropdown()" class="dropbtn" tabindex="9">
           Popularité
         </button>
         <div id="myDropdown" class="dropdown-content">
@@ -68,9 +68,11 @@
         <header>
           <h2 id="modal_title">Contactez-moi</h2>
           <img
+            id="closeForm"
             src="assets/icons/close.svg"
             onclick="closeModal()"
             alt="close button"
+            tabindex="7"
           />
         </header>
         <form id="formModal">
@@ -122,7 +124,9 @@
               name="comment"
             ></textarea>
           </div>
-          <button class="contact_button" type="submit">Envoyer</button>
+          <button class="contact_button" type="submit" tabindex="6">
+            Envoyer
+          </button>
         </form>
       </div>
     </div>
