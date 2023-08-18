@@ -4,7 +4,7 @@ function lightbox() {
 
   document.addEventListener("keydown", function (event) {
     if (event.key === "Escape") {
-      closeModal(); 
+      closeModal();
     }
   });
 
@@ -115,6 +115,8 @@ function lightbox() {
 
   function closeModal() {
     const modalOverlay = document.querySelector(".modal-overlay");
-    modalOverlay.remove();
+    if (modalOverlay) {
+      modalOverlay.remove();
+    }
   }
 }

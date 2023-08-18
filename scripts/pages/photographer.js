@@ -91,11 +91,9 @@ function openDropdown() {
 
 function initFilter(medias) {
   const dropdownItems = document.querySelectorAll(".dropdown-item");
-  console.log(dropdownItems);
 
   for (const dropdownItem of dropdownItems) {
     dropdownItem.addEventListener("click", function (e) {
-      console.log(dropdownItem.id);
 
       let filterLikes = medias;
       switch (dropdownItem.id) {

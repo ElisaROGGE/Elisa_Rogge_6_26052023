@@ -1,6 +1,7 @@
 function mediaFactory(data) {
   const { id, photographerId, title, image, video, likes, date, price } = data;
   let picture = null;
+  console.log("4" + 2)
 
   function getMediaCardDOM() {
     const article = document.createElement("article");
@@ -12,7 +13,7 @@ function mediaFactory(data) {
     if (video) {
       element = createVideo(video);
     }
-    element.setAttribute("tabindex", "8");
+    element.setAttribute("tabindex", "9");
 
     article.appendChild(element);
 
@@ -34,7 +35,7 @@ function mediaFactory(data) {
     like.classList.add("heart-span");
     const heart = document.createElement("i");
     heart.classList.add("fa", "fa-heart-o");
-    heart.setAttribute('tabindex', '8')
+    heart.setAttribute('tabindex', '9')
     like.textContent = likes;
     mediaLike.appendChild(like);
     mediaLike.appendChild(heart);
