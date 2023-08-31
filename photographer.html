@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
   <head>
     <link href="css/style.css" rel="stylesheet" type="text/css" />
     <meta charset="utf-8" />
@@ -26,14 +26,13 @@
       <img src="assets/images/logo.png" class="logo" alt="fisheye logo" />
     </header>
     <main id="main">
-      <div class="photograph-header" aria-label="photograph-info">
+      <div class="photograph-header">
         <div class="photographInfo">
           <h1 id="name"></h1>
           <h3 id="location"></h3>
           <span id="tagline"></span>
         </div>
         <button
-          role="button"
           tabindex="1"
           aria-label="photograph-contact"
           class="contact_button"
@@ -45,7 +44,7 @@
       </div>
       <div class="dropdown">
         <span>Trier par</span>
-        <button role="button" onclick="openDropdown()" class="dropbtn" tabindex="8">
+        <button onclick="openDropdown()" class="dropbtn" tabindex="8">
           Popularité
         </button>
         <div id="myDropdown" class="dropdown-content">
@@ -77,7 +76,7 @@
         </header>
         <form id="formModal">
           <div class="formData">
-            <label for="firstName">Prénom</label>
+            <label for="first">Prénom</label>
             <input
               type="text"
               tabindex="2"
@@ -88,13 +87,12 @@
             <p role="alert" id="errorFirstname" class="error errorActive"></p>
           </div>
           <div class="formData">
-            <label for="name">Nom</label>
+            <label for="last">Nom</label>
             <input
               tabindex="3"
               aria-label="Champ nom"
               type="text"
               class="text-control"
-              type="text"
               id="last"
               name="last"
             />
@@ -105,7 +103,6 @@
             <input
               tabindex="4"
               aria-label="Champ email"
-              type="text"
               class="text-control"
               type="email"
               id="email"
@@ -114,12 +111,11 @@
             <p role="alert" id="errorEmail" class="error errorActive"></p>
           </div>
           <div class="formData">
-            <label for="message">Votre message</label>
+            <label for="comment">Votre message</label>
             <textarea
               tabindex="5"
               aria-label="Champ message"
               class="text-control"
-              type="text"
               id="comment"
               name="comment"
             ></textarea>

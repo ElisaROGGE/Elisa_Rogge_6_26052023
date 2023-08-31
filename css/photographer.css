@@ -255,3 +255,6 @@ form textarea {
     border-radius: 5px;
     margin-bottom: 40px;
 }
+.error{
+  color: red
+}
