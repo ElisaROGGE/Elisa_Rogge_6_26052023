@@ -94,7 +94,6 @@ function initFilter(medias) {
 
   for (const dropdownItem of dropdownItems) {
     dropdownItem.addEventListener("click", function (e) {
-
       let filterLikes = medias;
       switch (dropdownItem.id) {
         case "populaire":
@@ -119,6 +118,7 @@ function initFilter(medias) {
       dropdown.classList.remove("show");
 
       displayData(filterLikes);
+      incrementLikes();
     });
   }
 
@@ -182,27 +182,26 @@ function incrementLikes() {
       }
     });
   }
-
   function eventLike(heart) {
     let mediaLike = heart.parentNode;
     let likeSpan = mediaLike.querySelector("span");
-    let currentLikes = parseInt(likeSpan.textContent);
-    let liked = mediaLike.getAttribute("data-liked") === "true";
-
-    if (liked) {
-      currentLikes -= 1;
-      heart.classList.remove("fa-heart");
-      heart.classList.add("fa-heart-o");
-      mediaLike.setAttribute("data-liked", "false");
-    } else {
-      currentLikes += 1;
-      heart.classList.remove("fa-heart-o");
-      heart.classList.add("fa-heart");
-      mediaLike.setAttribute("data-liked", "true");
-    }
-
-    likeSpan.textContent = currentLikes;
-
-    totalLike();
+  let currentLikes = parseInt(likeSpan.textContent);
+  let liked = mediaLike.getAttribute("data-liked") === "true";
+  
+  if (liked) {
+    currentLikes -= 1;
+    heart.classList.remove("fa-heart");
+    heart.classList.add("fa-heart-o");
+    mediaLike.setAttribute("data-liked", "false");
+  } else {
+    currentLikes += 1;
+    heart.classList.remove("fa-heart-o");
+    heart.classList.add("fa-heart");
+    mediaLike.setAttribute("data-liked", "true");
   }
+  
+  likeSpan.textContent = currentLikes;
+  
+  totalLike();
+}
 }
